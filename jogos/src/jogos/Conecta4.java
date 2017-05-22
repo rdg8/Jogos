@@ -16,14 +16,20 @@ import java.util.Scanner;
 public class Conecta4 {
     public static Scanner console=new Scanner(System.in);
     public static String vez;
+    public static boolean D= true;
     public static void main(String[] args) {
-        boolean denovo=true;
+        boolean denovo=true, ganhador=true;
+        String[][] tabuleiro = new String[6][7];
+        iniciaTabuleiro(tabuleiro);
+        imprimirTabuleiro(tabuleiro); 
+        
+        
         do{
-        System.out.println("escolha entre X e O: ");
+        System.out.println("escolha X ou O: ");
         vez = console.next();
         vez = vez.toUpperCase();
         if ((!vez.equals("X"))&(!vez.equals("O"))){
-            System.out.println("escolha entre X e O: ");
+            System.out.println("escolha X ou O: ");
             vez = console.next();
             vez = vez.toUpperCase();       
         }  
@@ -32,27 +38,28 @@ public class Conecta4 {
         }
         }while(denovo);
         
-        String[][] tabuleiro = new String[6][7];
-        int t=0;
-        iniciaTabuleiro(tabuleiro);
+        do{
         posicaoTabuleiro(tabuleiro);
+        
         imprimirTabuleiro(tabuleiro);
-        do {
+        if(D){
+        jogarDenovo();
+        }
+        }while(ganhador);
+              
+    }  
+     static void jogarDenovo(){
+         
             if(vez.equals("X")){
                 vez = "O";
             }
             else if(vez.equals("O")){
                 vez = "X";
-            }
-        posicaoTabuleiro(tabuleiro);
-        imprimirTabuleiro(tabuleiro);
+            }   
             
-            
-        }while(t==0);
-              
-    }        
-    
-    public static void iniciaTabuleiro(String[][] tabuleiro){
+        
+     }
+    static void iniciaTabuleiro(String[][] tabuleiro){
         for (int i = 0; i < tabuleiro.length; i++) {
             for (int j = 0; j < tabuleiro[i].length; j++) {
                 tabuleiro[i][j] = ".";
@@ -61,7 +68,7 @@ public class Conecta4 {
         
     }
     
-    public static void imprimirTabuleiro(String[][] tabuleiro){
+    static void imprimirTabuleiro(String[][] tabuleiro){
         System.out.println("0 1 2 3 4 5 6");
         for(int i=0;i<tabuleiro.length;i++){
             for(int j=0;j<tabuleiro[i].length;j++){
@@ -69,13 +76,16 @@ public class Conecta4 {
             }
             System.out.println();
         }
+        System.out.println("=============");
     }
         
    
-    public static void posicaoTabuleiro(String[][] tabuleiro){
+    static void
+         posicaoTabuleiro(String[][] tabuleiro){
+    
         do{
          boolean codicao=true;   
-         System.out.println("Escolha uma posição de 0 a 6:"+vez);  
+         System.out.println("Jogador: " +vez+ "\nEscolha uma posição de 0 a 6:");  
         int p = console.nextInt();
         if ((p<=6)&(p>=0)){
             
@@ -103,7 +113,8 @@ public class Conecta4 {
                 else{
                     System.out.println("Posição INVALIDA\nessa coluna ja foi preenchida escolha outra");
                     System.out.println("Escolha uma posição de 0 a 6:"+vez);
-                    p = console.nextInt(tabuleiro.length);
+                    D=false;
+                                    
                     }
                 codicao=true;
                 break;
@@ -129,7 +140,8 @@ public class Conecta4 {
                 else{
                     System.out.println("Posição INVALIDA\nessa coluna ja foi preenchida escolha outra");
                     System.out.println("Escolha uma posição de 0 a 6:"+vez);
-                    p = console.nextInt(tabuleiro.length);
+                    D=false;
+                                   
                     }
                 codicao=true;
                 break;
@@ -156,6 +168,7 @@ public class Conecta4 {
                     System.out.println("Posição INVALIDA\nessa coluna ja foi preenchida escolha outra");
                     System.out.println("Escolha uma posição de 0 a 6:"+vez);
                     p = console.nextInt(tabuleiro.length);
+                    D=false;
                     }
                 codicao=true;
                 break;
@@ -182,6 +195,7 @@ public class Conecta4 {
                     System.out.println("Posição INVALIDA\nessa coluna ja foi preenchida escolha outra");
                     System.out.println("Escolha uma posição de 0 a 6:"+vez);
                     p = console.nextInt(tabuleiro.length);
+                    D=false;
                     }
                 codicao=true;
                 break;
@@ -208,6 +222,7 @@ public class Conecta4 {
                     System.out.println("Posição INVALIDA\nessa coluna ja foi preenchida escolha outra");
                     System.out.println("Escolha uma posição de 0 a 6:"+vez);
                     p = console.nextInt(tabuleiro.length);
+                    D=false;
                     }
                 codicao=true;
                 break;
@@ -234,6 +249,7 @@ public class Conecta4 {
                     System.out.println("Posição INVALIDA\nessa coluna ja foi preenchida escolha outra");
                     System.out.println("Escolha uma posição de 0 a 6:"+vez);
                     p = console.nextInt(tabuleiro.length);
+                    D=false;
                     }
                 codicao=true;
                 break;
@@ -260,6 +276,7 @@ public class Conecta4 {
                     System.out.println("Posição INVALIDA\nessa coluna ja foi preenchida escolha outra");
                     System.out.println("Escolha uma posição de 0 a 6:"+ vez);
                     p = console.nextInt(tabuleiro.length);
+                    D=false;
                     }
                 codicao=true;
                 break;
@@ -272,6 +289,8 @@ public class Conecta4 {
     }
     
     public static void ganhador(String[][] tabuleiro){
+        
+        
         
     }
     
